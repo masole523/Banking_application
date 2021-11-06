@@ -14,7 +14,6 @@ public class SimpleConnection {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
-			System.out.println("Driver registered");
 		}catch(ClassNotFoundException ex) {
 			System.out.println("Could not register driver");
 			ex.printStackTrace();

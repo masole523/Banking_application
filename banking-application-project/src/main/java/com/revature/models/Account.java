@@ -5,11 +5,15 @@ public class Account {
 	private int accountID;
 	private int amount;
 	private String type;
+	private int userID;
 	
-	public Account(int accountID, int amount, String type) {
+	public Account() {}
+	
+	public Account(int accountID, int amount, String type, int userID) {
 		this.accountID = accountID;
 		this.amount = amount;
 		this.type = type;
+		this.userID = userID;
 	}
 
 	public int getAccountID() {

@@ -6,13 +6,15 @@ public class User extends Person{
 
 
 	private int userID;
-	private ArrayList<Account> accounts;
 	
-	public User(String fn, String ln, int social, String add, String un, String pass, int userID, ArrayList<Account> accts) {
+	public User() {
+		super(null, null, 0, null, null, null);
+	}
+	
+	public User(String fn, String ln, int social, String add, String un, String pass, int userID) {
 		super(fn, ln, social, add, un, pass);
 
 		this.userID = userID;
-		this.accounts = accts;
 	}
 
 
@@ -23,15 +25,13 @@ public class User extends Person{
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-
-	public ArrayList<Account> getAccounts() {
-		return accounts;
+	
+	public String toString() {
+		return this.getFirstName() + " | " + this.getLastName() + " | " + this.getSsn() + " | " + this.getAddress() + " | " 
+				+ this.getUserID() + " | " + this.getPassword();
 	}
 	
-	public void addAccount(Account account) {
-		this.accounts.add(account);
-	}
-
+	
 	
 	
 
