@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.revature.models.User;
-import com.revature.utils.BetterConnection;
+import com.revature.utils.DAOUtility;
 
 public class JDBCPractice {
 
@@ -29,7 +29,7 @@ public class JDBCPractice {
 	public static ArrayList<User> getAllUsers() {
 		ArrayList<User> users = new ArrayList<>();
 		
-		try (Connection connection = BetterConnection.getConnection();
+		try (Connection connection = DAOUtility.getConnection();
 			Statement statement = connection.createStatement();){
 			
 			ResultSet rs = statement.executeQuery("select * from users");
@@ -57,7 +57,7 @@ public class JDBCPractice {
 	public static User getUserNotPrepared(String id) {
 		User user = new User();
 		
-		try(Connection connection = BetterConnection.getConnection();
+		try(Connection connection = DAOUtility.getConnection();
 				Statement statement = connection.createStatement();) {
 			String sql = "select * from users where userID = " + id;
 			statement.execute(sql);
@@ -87,7 +87,7 @@ public class JDBCPractice {
 		User user = new User();
 		
 		String sql = "select * from users where userID = ?";
-		try(Connection connection = BetterConnection.getConnection();
+		try(Connection connection = DAOUtility.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql);) {
 			
 			statement.setInt(1, id);

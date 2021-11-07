@@ -6,7 +6,10 @@ public class User extends Person{
 
 
 	private int userID;
+	private ArrayList<Account> accounts;
+
 	
+	//constructors
 	public User() {
 		super(null, null, 0, null, null, null);
 	}
@@ -17,7 +20,8 @@ public class User extends Person{
 		this.userID = userID;
 	}
 
-
+	
+	//getters and setters
 	public int getUserID() {
 		return userID;
 	}
@@ -26,6 +30,15 @@ public class User extends Person{
 		this.userID = userID;
 	}
 	
+	public ArrayList<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(ArrayList<Account> accounts) {
+		this.accounts = accounts;
+	}
+	
+	//print method
 	public String toString() {
 		return this.getFirstName() + " | " + this.getLastName() + " | " + this.getSsn() + " | " + this.getAddress() + " | " 
 				+ this.getUserID() + " | " + this.getPassword();
