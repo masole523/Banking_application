@@ -1,5 +1,7 @@
 package com.revature;
 
+import org.apache.logging.log4j.*;
+
 import com.revature.controllers.*;
 
 public class Driver {
@@ -8,5 +10,6 @@ public class Driver {
 		MenuController start = new MenuController();
 		
 		start.startMenu();
+		
 	}
 }

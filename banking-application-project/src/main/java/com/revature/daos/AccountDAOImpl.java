@@ -92,15 +92,15 @@ public class AccountDAOImpl implements AccountDAO{
 
 	}
 	
-	public static void main(String[] args) {
-		Account account = new Account("Save", 100.00, 1);
-		
-		AccountDAO accountD = new AccountDAOImpl();
-		
-		accountD.addAccount(account);
-		
-		System.out.println(account);
-	}
+//	public static void main(String[] args) {
+//		Account account = new Account("Save", 100.00, 1);
+//		
+//		AccountDAO accountD = new AccountDAOImpl();
+//		
+//		accountD.addAccount(account);
+//		
+//		System.out.println(account);
+//	}
 
 
 
