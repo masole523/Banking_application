@@ -11,12 +11,14 @@ public interface UserDAO {
 	
 	//delete user
 	
-	public void deleteUser(int userID);
+	public void deleteUser(String userID);
 	
 	//read user
 	
 	public ArrayList<User> getAllUsers();
 	public User getUser(int userID);
+	
+	public User getUser(String userName);
 	
 	//update user
 	

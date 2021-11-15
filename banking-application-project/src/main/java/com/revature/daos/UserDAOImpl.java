@@ -1,9 +1,14 @@
 package com.revature.daos;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.revature.models.User;
+import com.revature.services.LoginAuth;
 import com.revature.utils.DAOUtility;
 
 public class UserDAOImpl implements UserDAO{
@@ -17,7 +22,7 @@ public class UserDAOImpl implements UserDAO{
 	public void addUser(User user) {
 		try {
 			connection = DAOUtility.getConnection();
-			String sql = "insert into users (firstname, lastname, social, address, username, userpass, userID) values (?,?,?,?,?,?,?)";
+			String sql = "insert into users (firstname, lastname, social, address, username, userpass) values (?,?,?,?,?,?)";
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, user.getFirstName());
 			statement.setString(2, user.getLastName());
@@ -25,9 +30,9 @@ public class UserDAOImpl implements UserDAO{
 			statement.setString(4, user.getAddress());
 			statement.setString(5, user.getUsername());
 			statement.setString(6, user.getPassword());
-			statement.setInt(7, user.getUserID());
 			
 			
+			statement.execute();
 			System.out.println("User added");
 		}catch(SQLException ex) {
 			System.out.println("Could not add user");
@@ -36,15 +41,15 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void deleteUser(int userID) {
+	public void deleteUser(String userID) {
 		
 		try {
 			connection = DAOUtility.getConnection();
-			String sql = "delete from users where userID = ?";
+			String sql = "delete from users where lastname = ?";
 			statement = connection.prepareStatement(sql);
-			statement.setInt(1, userID);
+			statement.setString(1, userID);
 			
-			statement.executeUpdate();
+			statement.execute();
 			System.out.println("User deleted");
 		}catch(SQLException ex) {
 			System.out.println("Could not delete user");
@@ -82,11 +87,67 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User getUser(int userID) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUser(int ID) {
+		User user1 = new User();
+		try {
+			connection = DAOUtility.getConnection();
+			String sql = "select * from users where userID = ?";
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, ID);
+			
+			ResultSet rs = statement.executeQuery();
+
+			while(rs.next()) {
+				String fn = rs.getString("firstName");
+				String ln = rs.getString("lastName");
+				int social = rs.getInt("social");
+				String add = rs.getString("address");
+				String user = rs.getString("userName");
+				String pass = rs.getString("userpass");
+				int userID = rs.getInt("userID");
+
+				user1 = new User(fn, ln, social, add, user, pass, userID);
+
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return user1;
 	}
 
+	@Override
+	public User getUser(String username) {
+		User user1 = new User();
+		try {
+			connection = DAOUtility.getConnection();
+			String sql = "select * from users where username = ?";
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, username);
+			
+			ResultSet rs = statement.executeQuery();
+			
+			
+			while(rs.next()) {
+				String fn = rs.getString("firstName");
+				String ln = rs.getString("lastName");
+				int social = rs.getInt("social");
+				String add = rs.getString("address");
+				String user = rs.getString("userName");
+				String pass = rs.getString("userpass");
+				int userID = rs.getInt("userID");
+
+				user1 = new User(fn, ln, social, add, user, pass, userID);
+
+			}
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+			return user1;
+	}
+	
+	
 	private void closeResources() {
 		try {
 			if (statement != null && !statement.isClosed()) {
@@ -104,15 +165,15 @@ public class UserDAOImpl implements UserDAO{
 	public static void main(String[] args) {
 		UserDAO userDao = new UserDAOImpl();
 		
-		User user1 = new User("bob", "bill", 123456789, "111 street", "bob123", "pass", 3);
-		userDao.addUser(user1);
+		//User user1 = new User("bob", "bill", 123456789, "111 street", "bob123", "pass");
+		//userDao.addUser(user1);
 		ArrayList<User> users = userDao.getAllUsers();
 		
 		for (User user: users) {
 			System.out.println(user);
 		}
 		
-		userDao.deleteUser(3);
+		userDao.deleteUser("bill");
 		
 		for (User user: users) {
 			System.out.println(user);

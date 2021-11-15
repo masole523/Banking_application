@@ -19,6 +19,12 @@ public class User extends Person{
 
 		this.userID = userID;
 	}
+	
+	public User(String fn, String ln, int social, String add, String un, String pass) {
+		super(fn, ln, social, add, un, pass);
+
+		this.userID = userID;
+	}
 
 	
 	//getters and setters
@@ -40,8 +46,8 @@ public class User extends Person{
 	
 	//print method
 	public String toString() {
-		return this.getFirstName() + " | " + this.getLastName() + " | " + this.getSsn() + " | " + this.getAddress() + " | " 
-				+ this.getUserID() + " | " + this.getPassword();
+		return "First Name: " + this.getFirstName() + "\nLast Name: " + this.getLastName() + "\nSocial: " + this.getSsn() + "\nAddress: " + this.getAddress() + 
+				"\nUsername: " + this.getUsername() + "\nPassword " + this.getPassword() + "\nUser ID: " + this.getUserID();
 	}
 	
 	
