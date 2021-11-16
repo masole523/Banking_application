@@ -6,7 +6,6 @@ public class Account {
 	private double amount;
 	private String type;
 	private int userID;
-	private boolean approved;
 	
 	public Account() {}
 	
@@ -54,14 +53,6 @@ public class Account {
 
 	public void setUserID(int userID) {
 		this.userID = userID;
-	}
-
-	public boolean isApproved() {
-		return approved;
-	}
-
-	public void setApproved(boolean approved) {
-		this.approved = approved;
 	}
 
 	public String toString() {

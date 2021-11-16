@@ -3,3 +3,15 @@
 2021-11-15 13:47:25  TRACE com.revature.Driver:12 Start menu
 2021-11-15 13:54:41  TRACE com.revature.Driver:12 Start menu
 2021-11-15 13:54:46  TRACE com.revature.Driver:14 Logged out
+2021-11-16 16\:58\:48  TRACE com.revature.controllers.AcctController:32 Account ID: 0
+Type: college
+Amount: 1200.0
+UserID: 1
+2021-11-16 17\:28\:18  TRACE com.revature.controllers.UserController:46 New user account has been created 
+First Name: Tim
+Last Name: Burton
+Social: 123456789
+Address: 123
+Username: tim123
+Password password4
+User ID: 7

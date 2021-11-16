@@ -9,7 +9,7 @@ import com.revature.services.LoginAuth;
 import com.revature.views.*;
 
 public class MenuController {
-	private static Logger log = LogManager.getLogger(MenuController.class);
+	
 	private static int choice = 1;
 	private static DisplayAccounts accounts = new DisplayAccounts();
 	private static DisplayUsers users = new DisplayUsers(); 
@@ -17,13 +17,17 @@ public class MenuController {
 	private static UserDAOImpl us = new UserDAOImpl();
 	private static LoginAuth login = new LoginAuth();
 	private static EmployeeDAOImpl empl = new EmployeeDAOImpl(); 
+	private static AcctController acctC = new AcctController();
+	private static EmpController empC = new EmpController();
+	private static UserController userC = new UserController();
 
 
 	public static void startMenu() {
 
 
+		System.out.println("-----------------------------------");
 		System.out.println("Welcome to the banking application.\nPlease select the appropriate login below.");
-		System.out.println("1. User Login \n2. Employee Login");
+		System.out.println("1. User Login \n2. Employee Login \n3. New user");
 		choice = 1;
 		//once the user/employee has logged out they will be redirected back to the start menu
 		while (choice != 0) {
@@ -37,6 +41,8 @@ public class MenuController {
 			case 2:
 				employeeMenu();
 				break;
+			case 3:
+				userC.newUser();
 			case 0:
 				break;
 			default:
@@ -46,7 +52,7 @@ public class MenuController {
 
 			}
 		}
-		
+
 
 	}
 
@@ -54,12 +60,13 @@ public class MenuController {
 		//username and password login 
 		User use = new User();
 		use = null;
-
+		System.out.println("Welcome user! Please enter your credentials.");
+		System.out.println("--------------------------------------------");
 		//validate login credentials with database 
 		while (use == null) {
 			System.out.print("Username: ");
 			String user = scan.next();
-			System.out.print("\nPassword: ");
+			System.out.print("Password: ");
 			String pass = scan.next();
 
 
@@ -73,7 +80,7 @@ public class MenuController {
 		}
 		//then will ask if they want to display current accounts or new accounts
 		while (choice != 0) {
-			System.out.println("1. View all accounts\n2: View specific account\n3: Create new account\n0:  Logout");
+			System.out.println("1. View all accounts\n2: View specific account\n3: Create new account\n4: Perform transaction\n0:  Logout");
 			choice = scan.nextInt();
 
 			switch (choice) {
@@ -87,8 +94,12 @@ public class MenuController {
 				break;
 
 			case 3: 
-
+				acctC.newAccount(use);
 				break;
+			case 4:
+				System.out.println("Whick account would you like to manage?");
+				int acctID = scan.nextInt();
+				acctC.transaction(acctID);
 			default:
 
 				break;
@@ -97,6 +108,7 @@ public class MenuController {
 
 		//logout return to the normal menu
 		System.out.println("Successfully logged out!");
+		System.out.println("------------------------");
 		startMenu();
 	}
 
@@ -104,10 +116,13 @@ public class MenuController {
 		//username and password login 
 		Employee emp = new Employee();
 		emp = null;
+		
+		System.out.println("Welcome employee! Please enter your credentials.");
+		System.out.println("------------------------------------------------");
 		while (emp == null) {
 			System.out.print("Username: ");
 			String user = scan.next();
-			System.out.print("\nPassword: ");
+			System.out.print("Password: ");
 			String pass = scan.next();
 
 			//validate login credentials with database
@@ -120,35 +135,41 @@ public class MenuController {
 		}
 
 
-			//then will ask if they want to display all users, specific user
-			while (choice != 0) {
-				System.out.println("1. View all users\n2: View specific user\n3: View all newly registered accounts \n0:  Logout");
-				choice = scan.nextInt();
+		//then will ask if they want to display all users, specific user
+		while (choice != 0) {
+			System.out.println("1. View all users\n2: View specific user\n3: View all newly registered accounts\n 4:Approve an account \n0:  Logout");
+			choice = scan.nextInt();
 
-				switch (choice) {
-				case 1:
-					users.displayAllUsers();
-					break;
-				case 2:
-					System.out.print("Please enter the users ID:");
-					int id = scan.nextInt();
-					users.displayUser(id);
-					break;
+			switch (choice) {
+			case 1:
+				users.displayAllUsers();
+				break;
+			case 2:
+				System.out.print("Please enter the users ID:");
+				int id = scan.nextInt();
+				users.displayUser(id);
+				break;
 
-				case 3: 
+			case 3: 
+				accounts.displayNewAccounts();
+				break;
+			case 4:
+				System.out.println("Enter account id: ");
+				int ID = scan.nextInt();
+				empC.approveNewAccount(ID);
+				break;
+			case 0:
 
-					break;
-				case 0:
+				break;
+			default:
 
-					break;
-				default:
-
-					break;
-				}
+				break;
 			}
-			//logout return to the normal menu
-			System.out.println("Successfully logged out!");
-			startMenu();
 		}
+		//logout return to the normal menu
+		System.out.println("Successfully logged out!");
+		System.out.println("------------------------");
+		startMenu();
 	}
+}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.revature.daos.AccountDAOImpl;
 import com.revature.models.Account;
+import com.revature.models.AccountsPending;
 
 public class DisplayAccounts {
 	static AccountDAOImpl acctDao = new AccountDAOImpl();
@@ -16,11 +17,11 @@ public class DisplayAccounts {
 		
 		
 		for (Account account : accounts) {
-			System.out.println("--------Account" + account.getAccountID() + "--------");
+			System.out.println("--------Account " + account.getAccountID() + "--------");
 			System.out.println(account);
 		}
 		
-		System.out.println("------------------------");
+		System.out.println("-------------------------");
 		
 	}
 	
@@ -33,6 +34,19 @@ public class DisplayAccounts {
 		System.out.println(account);
 		System.out.println("-------------------------");
 		
+	}
+	
+	
+	public static void displayNewAccounts() {
+		ArrayList<AccountsPending> accts = new ArrayList<>();
+		
+		accts = acctDao.getNewAccounts();
+		
+		for (AccountsPending accounts: accts) {
+			System.out.println("-----------------------");
+			System.out.println(accounts);
+		}
+		System.out.println("-----------------------");
 	}
 	
 	

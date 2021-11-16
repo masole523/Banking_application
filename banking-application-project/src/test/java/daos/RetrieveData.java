@@ -4,12 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.revature.daos.AccountDAOImpl;
-import com.revature.daos.EmployeeDAOImpl;
-import com.revature.daos.UserDAOImpl;
-import com.revature.models.Account;
-import com.revature.models.Employee;
-import com.revature.models.User;
+import com.revature.daos.*;
+import com.revature.daos.*;
+import com.revature.models.*;
 
 public class RetrieveData {
 
