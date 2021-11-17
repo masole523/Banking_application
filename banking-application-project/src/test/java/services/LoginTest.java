@@ -16,6 +16,15 @@ public class LoginTest {
 		
 		assertTrue(success);
 	}
+	
+	@Test
+	public void testUserLoginFail() {
+		LoginAuth login = new LoginAuth();
+		
+		boolean success = login.loginCheckUser("billy123", "pasword76");
+		
+		assertFalse(success);
+	}
 
 	@Test
 	public void testEmpLogin() {
@@ -24,5 +33,14 @@ public class LoginTest {
 		boolean success = login.loginCheckEmp("deena123", "password1");
 		
 		assertTrue(success);
+	}
+	
+	@Test
+	public void testEmpLoginFail() {
+		LoginAuth login = new LoginAuth();
+		
+		boolean success = login.loginCheckEmp("deena123", "FailPassword");
+		
+		assertFalse(success);
 	}
 }

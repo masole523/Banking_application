@@ -15,3 +15,24 @@ Address: 123
 Username: tim123
 Password password4
 User ID: 7
+2021-11-16 19\:39\:17  TRACE com.revature.controllers.AcctController:32 New account was made. Waiting for approval
+Account ID: 0
+Type: shares
+Amount: 1500.5
+UserID: 1
+2021-11-16 19\:39\:45  TRACE com.revature.controllers.AcctController:71 Deposit of 300.54 was deposited into account 14
+2021-11-16 19\:40\:48  TRACE com.revature.controllers.AcctController:59 Withdraw of 500.0 withdrawn from account 2
+2021-11-16 19\:42\:07  TRACE com.revature.controllers.EmpController:25 Account ID: 2 was approved and moved over into accounts table.
+2021-11-16 19\:44\:41  TRACE com.revature.controllers.UserController:49 New user account has been created 
+First Name: Cole
+Last Name: Bob
+Social: 123232123
+Address: 123
+Username: cole123
+Password password8
+User ID: 9
+2021-11-16 19\:45\:35  TRACE com.revature.controllers.AcctController:32 New account was made. Waiting for approval
+Account ID: 0
+Type: checking
+Amount: 100.39
+UserID: 9

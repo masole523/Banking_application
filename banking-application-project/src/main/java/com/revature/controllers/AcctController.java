@@ -18,6 +18,8 @@ public class AcctController {
 	static TransactionAuth transaction = new TransactionAuth();
 	static boolean good;
 	static Account account;
+	
+	//create a new account
 	public static void newAccount(User user) {
 
 		System.out.print("What type of account are you opening: ");
@@ -39,6 +41,7 @@ public class AcctController {
 
 	}
 
+	//controller to perform whichever transaction to user says they wish to perform
 	public static void transaction(int accountID) {
 		account = acct.getAccount(accountID);
 		System.out.println("What type of transaction do you wish to perform \n1: Withdraw\n2: Deposit");
